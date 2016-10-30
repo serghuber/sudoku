@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+}
+
+table {
+  margin-top: 20px;
+  border: 1px solid #D5EDEB;
+  border-collapse: collapse;
+  background-color: #D5EDEB;
+}
+
+td {
+  width: 40px;
+  height: 40px;
+}
+
+input {
+  width: 40px;
+  height: 40px;
+  border: 0px;
+  text-align: center;
+  font-size: 18px;
+  padding: 0px;
+}
+
+.not-editable input {
+  font-weight: bold;
+}
+
+.game-container {
+  width: 380px;
+  margin: auto;
+}
+
+.check-button {
+  margin-top: 30px;
+  margin-left: 146px;
+}
+
+.clear-button {
+  margin-top: 30px;
+  margin-left: 200px;
+}
+
+.difficulty-button {
+  margin-top: 30px;
+  margin-left: 2px;
+}
