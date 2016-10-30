@@ -2,39 +2,39 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-	entry: [
-		'./src/main'
-	],
-	output: {
-		path: path.join(__dirname, 'public'),
-		filename: 'bundle.js',
-		publicPath: '/public/'
-	},
+  entry: [
+    './src/main'
+  ],
+  output: {
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js',
+    publicPath: '/public/'
+  },
   resolve: {
     extensions: [ '', '.js', '.jsx' ]
   },
-	plugins: [
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.UglifyJsPlugin({
-			minimize: true,
-		  compress: {
-		    warnings: false
-		  }
-		}),
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
     })
-	],
+  ],
 
-	module: {
-		loaders: [
+  module: {
+    loaders: [
       {
-  			test: /\.js$/,
-  			loaders: ['babel'],
-  			include: path.join(__dirname, 'src')
-		  },
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'src')
+      },
 
       {
         test: /\.css$/,
@@ -42,5 +42,5 @@ module.exports = {
         include: path.join(__dirname, 'src')
       }
     ]
-	}
+  }
 };
