@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   checkBtnClick() {
-    if(validation(this.props.board)) {
+    if (validation(this.props.board)) {
       this.setState({dialogMessage: 'Sudoku is solved. Congratulations!'});
       this.props.dispatch(showDialog());
     } else {

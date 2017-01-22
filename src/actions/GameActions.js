@@ -14,7 +14,8 @@ export function startNewGame(difficulty) {
 }
 
 export function changeCellValue(i, j, value, board) {
-  let newBoard = JSON.parse(JSON.stringify(board));
+  // let newBoard = JSON.parse(JSON.stringify(board));
+  let newBoard = board.slice();
 
   newBoard[i][j].value = value;
 
@@ -22,7 +23,8 @@ export function changeCellValue(i, j, value, board) {
 }
 
 export function clearTable(board) {
-  let newBoard = JSON.parse(JSON.stringify(board));
+  // let newBoard = JSON.parse(JSON.stringify(board));
+  let newBoard = board.slice();
 
   for(let i=0; i<9; i++) {
     for(let j=0; j<9; j++) {
