@@ -12,7 +12,7 @@ import Grid from './Grid';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       dialogMessage: ''
@@ -82,7 +82,7 @@ class App extends Component {
 }
 
 App.childContextTypes = {
-  muiTheme: React.PropTypes.object.isRequired,
+  muiTheme: React.PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {

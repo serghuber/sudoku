@@ -12,7 +12,7 @@ injectTapEventPlugin();
 
 const store = configureStore();
 
-store.dispatch(startNewGame('easy'))
+store.dispatch(startNewGame('easy'));
 
 ReactDOM.render(
   <Provider store={store}><App /></Provider>,

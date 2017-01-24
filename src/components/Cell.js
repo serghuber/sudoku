@@ -22,7 +22,7 @@ const getBoxColor = (row, col) => {
 
 class Cell extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.onChange = this.onChange.bind(this);
     this.onClick = this.onClick.bind(this);

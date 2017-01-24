@@ -26,8 +26,8 @@ export function clearTable(board) {
   // let newBoard = JSON.parse(JSON.stringify(board));
   let newBoard = board.slice();
 
-  for(let i=0; i<9; i++) {
-    for(let j=0; j<9; j++) {
+  for(let i = 0; i < 9; i++) {
+    for(let j = 0; j < 9; j++) {
       if(newBoard[i][j].editable == true) newBoard[i][j].value = '';
     }
   }
@@ -50,27 +50,22 @@ export function validation(array) {
     for (let j = 0; j < 9; j++) {
       let value = array[i][j].value;
 
-      if(!value) return false;
+      if (!value) return false;
 
       for (let n = 0; n < 9; n++) {
-        if (n != j && array[i][n].value == value) {
-          return false;
-        }
+        if (n != j && array[i][n].value == value) return false;
       }
 
       for (let m = 0; m < 9; m++) {
-        if (m != i && array[m][j].value == value) {
-          return false;
-        }
+        if (m != i && array[m][j].value == value) return false;
       }
 
-      let startX = Math.floor(i/3)*3;
+      let startX = Math.floor(i / 3) * 3;
+
       for (let x = startX; x < startX + 3; x++) {
-        let startY = Math.floor(j/3)*3;
+        let startY = Math.floor(j / 3) * 3;
         for (let y = startY; y < startY + 3; y++) {
-          if ((y != j || x != i) && array[x][y].value == value) {
-            return false;
-          }
+          if ((y != j || x != i) && array[x][y].value == value) return false;
         }
       }
     }
