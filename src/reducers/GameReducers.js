@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export default function (state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case NEW_GAME:
       return Object.assign({}, state, { difficulty: action.difficulty, board: action.board });
     case CHANGE_CELL_VALUE:

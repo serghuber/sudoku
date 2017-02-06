@@ -66,14 +66,14 @@ class App extends Component {
   render() {
     const { difficulty, board, showDialog } = this.props;
 
-    return(
+    return (
       <div>
         <TopBar onTouchTap={this.menuTouchTap} />
-        <div className='game-container'>
-          <RaisedButton className='difficulty-button' label={difficulty} />
-          <RaisedButton className='clear-button' label='CLEAR' secondary={true} onClick={this.clearBtnClick} />
+        <div className="game-container">
+          <RaisedButton className="difficulty-button" label={difficulty} />
+          <RaisedButton className="clear-button" label="CLEAR" secondary onClick={this.clearBtnClick} />
           <Grid board={board} dispatch={this.props.dispatch} />
-          <RaisedButton className='check-button' label='CHECK' primary={true} onClick={this.checkBtnClick} />
+          <RaisedButton className="check-button" label="CHECK" primary onClick={this.checkBtnClick} />
         </div>
         <DialogWindow dispatch={this.props.dispatch} message={this.state.dialogMessage} open={showDialog} />
       </div>

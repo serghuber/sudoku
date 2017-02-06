@@ -1,41 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import { closeDialog } from '../actions/GameActions';
 
-class DialogWindow extends Component {
-  constructor(props) {
-    super(props);
+const DialogWindow = (props) => {
+  const actions = [
+    <FlatButton
+      label="Ok"
+      primary
+      onTouchTap={() => props.dispatch(closeDialog())}
+    />
+  ];
 
-    this.handleClose = this.handleClose.bind(this);
-  }
-
-  handleClose() {
-    this.props.dispatch(closeDialog());
-  };
-
-  render() {
-    const actions = [
-      <FlatButton
-        label="Ok"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />,
-    ];
-
-    return(
-      <Dialog
-        actions={actions}
-        modal={false}
-        open={this.props.open}
-        onRequestClose={this.handleClose}
-        contentStyle={{width: 310}}
-        bodyStyle={{textAlign: 'center', paddingBottom: 0, fontSize: 18, color: 'black'}}
-      >
-        {this.props.message}
-      </Dialog>
-    );
-  }
+  return (
+    <Dialog
+      actions={actions}
+      modal={false}
+      open={props.open}
+      onRequestClose={() => props.dispatch(closeDialog())}
+      contentStyle={{width: 310}}
+      bodyStyle={{textAlign: 'center', paddingBottom: 0, fontSize: 18, color: 'black'}}
+    >
+      {props.message}
+    </Dialog>
+  );
 }
 
 export default DialogWindow;

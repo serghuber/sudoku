@@ -1,8 +1,8 @@
-const chunk = require('lodash.chunk');
-
 import { EASY } from '../components/Boards';
 import { MEDIUM } from '../components/Boards';
 import { HARD } from '../components/Boards';
+
+const chunk = require('lodash.chunk');
 
 export function getSudokuString(difficulty) {
   switch (difficulty) {
@@ -16,22 +16,21 @@ export function getSudokuString(difficulty) {
 }
 
 export function getSudokuArray(sudokuString) {
-  let arrOfCells = [];
+  const arrOfCells = [],
+        sudokuArray = [];
 
   for (let i = 0; i < 81; i++) {
     if (sudokuString[i] === '0') {
       arrOfCells.push('');
     } else {
-      arrOfCells.push(parseInt(sudokuString[i]));
+      arrOfCells.push(+sudokuString[i]);
     }
   }
 
-  let arrOfLines = chunk(arrOfCells, 9);
-
-  let sudokuArray = [];
+  const arrOfLines = chunk(arrOfCells, 9);
 
   for (let i = 0; i < 9; i++) {
-    let line = [];
+    const line = [];
     for (let j = 0; j < 9; j++) {
       line.push(newCell(i, j, arrOfLines[i][j], arrOfLines[i][j] === ''));
     }
@@ -42,7 +41,7 @@ export function getSudokuArray(sudokuString) {
 }
 
 function chooseRandomSudoku(arr) {
-  var elem = getRandomNumber(0, arr.length - 1);
+  const elem = getRandomNumber(0, arr.length - 1);
   return arr[elem];
 }
 
