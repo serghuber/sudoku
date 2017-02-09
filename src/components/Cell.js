@@ -14,8 +14,8 @@ const pallet = {
 };
 
 const getBoxColor = (row, col) => {
-	const rowGroup = row - (row % 3),
-				colGroup = (col - (col % 3)) * 10;
+	const rowGroup = row - (row % 3);
+	const colGroup = (col - (col % 3)) * 10;
 
 	return pallet[rowGroup + colGroup];
 };
@@ -29,16 +29,15 @@ class Cell extends Component {
   }
 
   shouldComponentUpdate(newProps) {
-    const oldCell = this.props.cell,
-    			newCell = newProps.cell;
+    const oldCell = this.props.cell;
+    const newCell = newProps.cell;
 
     return oldCell.value !== newCell.value || oldCell.editable !== newCell.editable;
   }
 
   onChange(event) {
-    event.preventDefault();
-    const cell = this.props.cell,
-					newValue = event.target.value;
+    const cell = this.props.cell;
+		const newValue = event.target.value;
 
     if (!cell.editable) return;
 
@@ -47,12 +46,10 @@ class Cell extends Component {
       return;
     }
 
-    this.props.dispatch(changeCellValue(cell.i, cell.j, newValue === '' ? '' : +newValue, this.props.board));
+    this.props.dispatch(changeCellValue(cell.i, cell.j, newValue === '' ? '' : Number(newValue), this.props.board));
   }
 
   onClick(event) {
-    event.preventDefault();
-
     if (this.props.cell.editable) {
       event.target.select();
     } else {
@@ -61,7 +58,7 @@ class Cell extends Component {
   }
 
   render() {
-    const { cell } = this.props;
+    const cell = this.props.cell;
 
     return (
       <td className={cell.editable ? "editable" : "not-editable"}>

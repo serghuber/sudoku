@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { startNewGame } from '../actions/GameActions';
-import { clearTable } from '../actions/GameActions';
-import { validation } from '../actions/GameActions';
-import { showDialog } from '../actions/GameActions';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import RaisedButton from 'material-ui/RaisedButton';
 import DialogWindow from './DialogWindow';
 import TopBar from './TopBar';
 import Grid from './Grid';
+import {
+  startNewGame,
+  clearTable,
+  validation,
+  showDialog
+} from '../actions/GameActions';
 
 class App extends Component {
   constructor(props) {
@@ -18,8 +20,6 @@ class App extends Component {
       dialogMessage: ''
     }
 
-    this.menuTouchTap = this.menuTouchTap.bind(this);
-    this.clearBtnClick = this.clearBtnClick.bind(this);
     this.checkBtnClick = this.checkBtnClick.bind(this);
   }
 
@@ -44,14 +44,6 @@ class App extends Component {
     };
   }
 
-  menuTouchTap(difficulty) {
-    this.props.dispatch(startNewGame(difficulty));
-  }
-
-  clearBtnClick() {
-    this.props.dispatch(clearTable(this.props.board));
-  }
-
   checkBtnClick() {
     if (validation(this.props.board)) {
       this.setState({dialogMessage: 'Sudoku is solved. Congratulations!'});
@@ -60,22 +52,31 @@ class App extends Component {
       this.setState({dialogMessage: 'Sudoku is not solved. Try again!'});
       this.props.dispatch(showDialog());
     }
-
   }
 
   render() {
-    const { difficulty, board, showDialog } = this.props;
+    const { dispatch, difficulty, board, showDialog } = this.props;
 
     return (
       <div>
-        <TopBar onTouchTap={this.menuTouchTap} />
+        <TopBar onTouchTap={() => dispatch(startNewGame(difficulty))} />
         <div className="game-container">
           <RaisedButton className="difficulty-button" label={difficulty} />
-          <RaisedButton className="clear-button" label="CLEAR" secondary onClick={this.clearBtnClick} />
-          <Grid board={board} dispatch={this.props.dispatch} />
-          <RaisedButton className="check-button" label="CHECK" primary onClick={this.checkBtnClick} />
+          <RaisedButton
+            className="clear-button"
+            label="CLEAR"
+            secondary
+            onClick={() => dispatch(clearTable(board))}
+          />
+          <Grid board={board} dispatch={dispatch} />
+          <RaisedButton
+            className="check-button"
+            label="CHECK"
+            primary
+            onClick={this.checkBtnClick}
+          />
         </div>
-        <DialogWindow dispatch={this.props.dispatch} message={this.state.dialogMessage} open={showDialog} />
+        <DialogWindow dispatch={dispatch} message={this.state.dialogMessage} open={showDialog} />
       </div>
     );
   }
@@ -85,7 +86,7 @@ App.childContextTypes = {
   muiTheme: React.PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   const { difficulty, board, showDialog } = state;
 
   return { difficulty, board, showDialog };

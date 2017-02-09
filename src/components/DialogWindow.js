@@ -1,6 +1,5 @@
 import React from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import { Dialog, FlatButton } from 'material-ui';
 import { closeDialog } from '../actions/GameActions';
 
 const DialogWindow = (props) => {

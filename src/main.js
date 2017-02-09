@@ -5,7 +5,6 @@ import configureStore from './store';
 import App from './components/App';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { startNewGame } from './actions/GameActions';
-
 import './css/style.css';
 
 injectTapEventPlugin();

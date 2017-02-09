@@ -1,13 +1,13 @@
-const Server = require('./src/server.js');
-      port = (process.env.PORT || 8080);
-      app = Server.app();
+const server = require('./src/server.js');
+const port = (process.env.PORT || 8080);
+const app = server.app();
 
 if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');
-        webpackDevMiddleware = require('webpack-dev-middleware');
-        webpackHotMiddleware = require('webpack-hot-middleware');
-        config = require('./webpack.dev.config.js');
-        compiler = webpack(config);
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const config = require('./webpack.dev.config.js');
+  const compiler = webpack(config);
 
   app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, {
