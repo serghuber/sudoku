@@ -1,4 +1,4 @@
-# Sudoku React App
+# Sudoku App
 Demo: https://sudoku-game.herokuapp.com
 
 This application was created using React, Redux and Material UI.
